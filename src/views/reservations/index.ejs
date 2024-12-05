@@ -1,0 +1,33 @@
+<div>
+    <h1 class="text-2xl font-bold mb-6">Reservas</h1>
+    <table class="table-auto border-collapse border border-gray-300 w-full">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="border border-gray-300 px-4 py-2">#</th>
+                <th class="border border-gray-300 px-4 py-2">Cliente</th>
+                <th class="border border-gray-300 px-4 py-2">Habitación</th>
+                <th class="border border-gray-300 px-4 py-2">Check-in</th>
+                <th class="border border-gray-300 px-4 py-2">Check-out</th>
+                <th class="border border-gray-300 px-4 py-2">Precio Total</th>
+                <th class="border border-gray-300 px-4 py-2">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% reservations.forEach((reservation, index) => { %>
+                <tr class="hover:bg-gray-100">
+                    <td class="border border-gray-300 px-4 py-2"><%= index + 1 %></td>
+                    <td class="border border-gray-300 px-4 py-2"><%= reservation.customer_name %></td>
+                    <td class="border border-gray-300 px-4 py-2"><%= reservation.room_name %></td>
+                    <td class="border border-gray-300 px-4 py-2"><%= reservation.check_in_date %></td>
+                    <td class="border border-gray-300 px-4 py-2"><%= reservation.check_out_date %></td>
+                    <td class="border border-gray-300 px-4 py-2">$<%= reservation.total_price %></td>
+                    <td class="border border-gray-300 px-4 py-2">
+                        <a href="/reservations/edit/<%= reservation.id %>" class="text-blue-600 hover:underline">Editar</a>
+                        <a href="/reservations/delete/<%= reservation.id %>" class="text-red-600 hover:underline ml-4">Eliminar</a>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <a href="/reservations/create" class="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Agregar Reserva</a>
+</div>

@@ -1,0 +1,75 @@
+<div class="max-w-2xl mx-auto mt-8 bg-white p-6 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-6"><%= reservation ? "Editar Reserva" : "Agregar Reserva" %></h1>
+    <form action="<%= reservation ? `/reservations/edit/${reservation.id}` : '/reservations/create' %>" method="POST">
+        <div class="mb-4">
+            <label for="customer_id" class="block text-sm font-medium text-gray-700">Cliente</label>
+            <select
+                id="customer_id"
+                name="customer_id"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                required
+            >
+                <% customers.forEach(customer => { %>
+                    <option value="<%= customer.id %>" <%= reservation && reservation.customer_id === customer.id ? "selected" : "" %>>
+                        <%= customer.name %>
+                    </option>
+                <% }) %>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="room_id" class="block text-sm font-medium text-gray-700">Habitación</label>
+            <select
+                id="room_id"
+                name="room_id"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                required
+            >
+                <% rooms.forEach(room => { %>
+                    <option value="<%= room.id %>" <%= reservation && reservation.room_id === room.id ? "selected" : "" %>>
+                        <%= room.name %> <%= room.type %>
+                    </option>
+                <% }) %>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="check_in_date" class="block text-sm font-medium text-gray-700">Fecha de Check-in</label>
+            <input
+                type="date"
+                id="check_in_date"
+                name="check_in_date"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                value="<%= reservation ? reservation.check_in_date : '' %>"
+                required
+            />
+        </div>
+        <div class="mb-4">
+            <label for="check_out_date" class="block text-sm font-medium text-gray-700">Fecha de Check-out</label>
+            <input
+                type="date"
+                id="check_out_date"
+                name="check_out_date"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                value="<%= reservation ? reservation.check_out_date : '' %>"
+                required
+            />
+        </div>
+        <div class="mb-4">
+            <label for="total_price" class="block text-sm font-medium text-gray-700">Precio Total</label>
+            <input
+                type="number"
+                step="0.01"
+                id="total_price"
+                name="total_price"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                value="<%= reservation ? reservation.total_price : '' %>"
+                required
+            />
+        </div>
+        <button
+            type="submit"
+            class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
+        >
+            <%= reservation ? "Guardar Cambios" : "Agregar Reserva" %>
+        </button>
+    </form>
+</div>

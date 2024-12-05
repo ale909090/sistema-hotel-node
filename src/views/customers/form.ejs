@@ -1,0 +1,41 @@
+<div class="max-w-2xl mx-auto mt-8 bg-white p-6 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-6"><%= customer ? "Editar Cliente" : "Agregar Cliente" %></h1>
+    <form action="<%= customer ? `/customers/edit/${customer.id}` : '/customers/create' %>" method="POST">
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700">Nombre</label>
+            <input
+                type="text"
+                name="name"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                value="<%= customer ? customer.name : '' %>"
+                required
+            />
+        </div>
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700">Email</label>
+            <input
+                type="email"
+                name="email"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                value="<%= customer ? customer.email : '' %>"
+                required
+            />
+        </div>
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700">Teléfono</label>
+            <input
+                type="text"
+                name="phone"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                value="<%= customer ? customer.phone : '' %>"
+                required
+            />
+        </div>
+        <button
+            type="submit"
+            class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
+        >
+            <%= customer ? "Guardar Cambios" : "Agregar Cliente" %>
+        </button>
+    </form>
+</div>

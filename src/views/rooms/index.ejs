@@ -1,0 +1,31 @@
+<div>
+    <h1 class="text-2xl font-bold mb-4">Habitaciones</h1>
+    <table class="table-auto border-collapse border border-gray-300 w-full">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="border border-gray-300 px-4 py-2 text-left">#</th>
+                <th class="border border-gray-300 px-4 py-2 text-left">Nombre</th>
+                <th class="border border-gray-300 px-4 py-2 text-left">Tipo</th>
+                <th class="border border-gray-300 px-4 py-2 text-left">Capacidad</th>
+                <th class="border border-gray-300 px-4 py-2 text-left">Precio por Noche</th>
+                <th class="border border-gray-300 px-4 py-2 text-left">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% rooms.forEach((room, index) => { %>
+                <tr class="hover:bg-gray-100">
+                    <td class="border border-gray-300 px-4 py-2"><%= index + 1 %></td>
+                    <td class="border border-gray-300 px-4 py-2"><%= room.name %></td>
+                    <td class="border border-gray-300 px-4 py-2"><%= room.type %></td>
+                    <td class="border border-gray-300 px-4 py-2"><%= room.capacity %></td>
+                    <td class="border border-gray-300 px-4 py-2">$<%= room.price_per_night %></td>
+                    <td class="border border-gray-300 px-4 py-2">
+                        <a href="/rooms/edit/<%= room.id %>" class="text-blue-600 hover:underline">Editar</a>
+                        <a href="/rooms/delete/<%= room.id %>" class="text-red-600 hover:underline ml-2">Eliminar</a>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <a href="/rooms/create" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Agregar Habitación</a>
+</div>

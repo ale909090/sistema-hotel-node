@@ -1,0 +1,60 @@
+<div class="max-w-2xl mx-auto mt-8 bg-white p-6 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-6"><%= room ? "Editar Habitación" : "Agregar Habitación" %></h1>
+    <form action="<%= room ? `/rooms/edit/${room.id}` : '/rooms/create' %>" method="POST">
+        <div class="mb-4">
+            <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                placeholder="Nombre de la habitación"
+                value="<%= room ? room.name : '' %>"
+                required
+            />
+        </div>
+        <div class="mb-4">
+            <label for="type" class="block text-sm font-medium text-gray-700">Tipo</label>
+            <input
+                type="text"
+                id="type"
+                name="type"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                placeholder="Ejemplo: Suite, Doble"
+                value="<%= room ? room.type : '' %>"
+                required
+            />
+        </div>
+        <div class="mb-4">
+            <label for="capacity" class="block text-sm font-medium text-gray-700">Capacidad</label>
+            <input
+                type="number"
+                id="capacity"
+                name="capacity"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                placeholder="Capacidad máxima"
+                value="<%= room ? room.capacity : '' %>"
+                required
+            />
+        </div>
+        <div class="mb-4">
+            <label for="price_per_night" class="block text-sm font-medium text-gray-700">Precio por Noche</label>
+            <input
+                type="number"
+                step="0.01"
+                id="price_per_night"
+                name="price_per_night"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                placeholder="Precio en USD"
+                value="<%= room ? room.price_per_night : '' %>"
+                required
+            />
+        </div>
+        <button
+            type="submit"
+            class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-150"
+        >
+            <%= room ? "Guardar Cambios" : "Agregar Habitación" %>
+        </button>
+    </form>
+</div>

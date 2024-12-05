@@ -1,0 +1,76 @@
+<div>
+    <h1 class="text-2xl font-bold mb-6">Servicios Comprados</h1>
+    <table class="table-auto border-collapse border border-gray-300 w-full">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="border border-gray-300 px-4 py-2">#</th>
+                <th class="border border-gray-300 px-4 py-2">Cliente</th>
+                <th class="border border-gray-300 px-4 py-2">Servicio</th>
+                <th class="border border-gray-300 px-4 py-2">Cantidad</th>
+                <th class="border border-gray-300 px-4 py-2">Precio Total</th>
+                <th class="border border-gray-300 px-4 py-2">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% purchasedServices.forEach((purchase, index) => { %>
+                <tr class="hover:bg-gray-100">
+                    <td class="border border-gray-300 px-4 py-2"><%= index + 1 %></td>
+                    <td class="border border-gray-300 px-4 py-2"><%= purchase.customer_name %></td>
+                    <td class="border border-gray-300 px-4 py-2"><%= purchase.service_name %></td>
+                    <td class="border border-gray-300 px-4 py-2"><%= purchase.quantity %></td>
+                    <td class="border border-gray-300 px-4 py-2">$<%= purchase.total_price %></td>
+                    <td class="border border-gray-300 px-4 py-2">
+                        <a href="/purchased_services/delete/<%= purchase.id %>" class="text-red-600 hover:underline">Eliminar</a>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+<div class="max-w-2xl mx-auto mt-8 bg-white p-6 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-6">Comprar Servicio</h1>
+    <form action="/purchased_services/create" method="POST">
+        <div class="mb-4">
+            <label for="customer_id" class="block text-sm font-medium text-gray-700">Cliente</label>
+            <select
+                id="customer_id"
+                name="customer_id"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                required
+            >
+                <% customers.forEach(customer => { %>
+                    <option value="<%= customer.id %>"><%= customer.name %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="service_id" class="block text-sm font-medium text-gray-700">Servicio</label>
+            <select
+                id="service_id"
+                name="service_id"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                required
+            >
+                <% services.forEach(service => { %>
+                    <option value="<%= service.id %>"><%= service.name %> - $<%= service.price %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="quantity" class="block text-sm font-medium text-gray-700">Cantidad</label>
+            <input
+                type="number"
+                id="quantity"
+                name="quantity"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                required
+            />
+        </div>
+        <button
+            type="submit"
+            class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
+        >
+            Comprar
+        </button>
+    </form>
+</div>

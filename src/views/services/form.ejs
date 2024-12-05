@@ -1,0 +1,34 @@
+<div class="max-w-2xl mx-auto mt-8 bg-white p-6 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-6"><%= service ? "Editar Servicio" : "Agregar Servicio" %></h1>
+    <form action="<%= service ? `/services/edit/${service.id}` : '/services/create' %>" method="POST">
+        <div class="mb-4">
+            <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                value="<%= service ? service.name : '' %>"
+                required
+            />
+        </div>
+        <div class="mb-4">
+            <label for="price" class="block text-sm font-medium text-gray-700">Precio</label>
+            <input
+                type="number"
+                step="0.01"
+                id="price"
+                name="price"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                value="<%= service ? service.price : '' %>"
+                required
+            />
+        </div>
+        <button
+            type="submit"
+            class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
+        >
+            <%= service ? "Guardar Cambios" : "Agregar Servicio" %>
+        </button>
+    </form>
+</div>

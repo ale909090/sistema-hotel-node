@@ -1,0 +1,16 @@
+/* Sidebar */
+nav {
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Links del sidebar */
+.nav-link {
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ddd;
+}
